@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:last_attack/controllers/authController.dart';
 
 class SignUp extends GetWidget<AuthController> {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
@@ -18,6 +19,11 @@ class SignUp extends GetWidget<AuthController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                decoration: InputDecoration(hintText: 'Username'),
+                controller: usernameController,
+              ),
+              SizedBox(height: 40),
+              TextFormField(
                 decoration: InputDecoration(hintText: 'Email'),
                 controller: emailController,
               ),
@@ -30,7 +36,7 @@ class SignUp extends GetWidget<AuthController> {
               RaisedButton(
                 child: Text('Sing Up'),
                 onPressed: () {
-                  controller.createUser(
+                  controller.createUser(usernameController.text,
                       emailController.text, passwordController.text);
                 },
               ),
